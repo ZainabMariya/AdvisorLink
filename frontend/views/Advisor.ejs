@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor Dashboard</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <script src="/JS/script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <header >
+            <img src="https://my.aacsb.edu/Portals/0/assets/images/contact/Prince%20Sultan%20Univeristy.png" width="200">
+            <div class="header-container">
+                
+                <div class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">AdvisorLink</span>
+                </div>
+            
+            </div>
+            <nav class="btn">
+                <a href="/" class="nav-link">Logout</a>
+                
+            </nav>
+        </header>
+        <h1 id="student-name"><%= user.Fname %> <%= user.Lname %> Dashboard</h1> <br>
+        <div class="profile-info">
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Name:</span>
+                    <span class="value"><%= user.Fname %> <%= user.Lname %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Campus:</span>
+                    <span class="value"><%= user.campus || 'Main Campus' %></span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">ID:</span>
+                    <span class="value"><%= user.advisor_id %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Department:</span>
+                    <span class="value"><%= user.department_id || 'Not specified' %></span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Email:</span>
+                    <span class="value"><%= user.email %></span>
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="sections-container">
+            <section class="high-risk">
+                <h2>High-Risk Advisees</h2>
+                <ul>
+                    <% if (HighRiskStudents && HighRiskStudents.length > 0) { %>
+                        <% HighRiskStudents.forEach(student => { %>
+                            <li>
+                                <% if (student.Student) { %>
+                                    <!-- Handle when using the High_Risk_Students table with association -->
+                                    <a href="/student/<%= student.student_id %>" class="student-link">
+                                        <%= student.Student.Fname %> <%= student.Student.Lname %>
+                                    </a>
+                                <% } else { %>
+                                    <!-- Handle when using the Student table directly -->
+                                    <a href="/student/<%= student.student_id %>" class="student-link">
+                                        <%= student.Fname %> <%= student.Lname %>
+                                    </a>
+                                <% } %>
+                                <% if (student.cumulative_gpa) { %>
+                                    <span class="gpa-indicator">GPA: <%= student.cumulative_gpa.toFixed(2) %></span>
+                                <% } %>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No high-risk students at this time</li>
+                    <% } %>
+                </ul>
+            </section>
+            
+            <section class="advisees-list">
+                <h2>List of Advisees</h2>
+                <ul>
+                    <% if (allStudents && allStudents.length > 0) { %>
+                        <% allStudents.forEach(student => { %>
+                            <li>
+                                <a href="/student/<%= student.student_id %>" class="student-link"><%= student.Fname %> <%= student.Lname %></a>
+                                
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li>No advisees assigned yet</li>
+                    <% } %>
+                </ul>
+            </section>
+            
+            <section class="advisee-tickets">
+                <h2>Advisee Tickets</h2>
+                <% if (tickets && tickets.length > 0) { %>
+                    <% tickets.forEach(ticket => { %>
+                        <div class="ticket">
+                            <div class="ticket-header">
+                                <span class="student-name"><%= ticket.student_name %></span>
+                                <span class="ticket-date"><%= new Date(ticket.created_at).toLocaleDateString() %></span>
+                            </div>
+                            <div class="ticket-summary">
+                                <p><%= ticket.description %></p>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <div class="ticket">
+                        <div class="ticket-summary">
+                            <p>No tickets at this time.</p>
+                        </div>
+                    </div>
+                <% } %>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i>💬</i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>Advising Assistant</h3>
+            <div class="chatbot-header-controls">
+                <button class="chatbot-minimize" id="chatbotMinimize">-</button>
+                <button class="chatbot-maximize" id="chatbotMaximize">□</button>
+                <button class="chatbot-close" id="chatbotClose">×</button>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                Hello! I'm your Advising assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button id="chatbotSend">Send</button>
+        </div>
+    </div>
+
+    <script>
+      window.USER_TYPE = "<%= user.viewMode %>";
+    </script>
+</body>
+</html>

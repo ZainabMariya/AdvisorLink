@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdvisorLink - Student Dashboard</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/JS/script.js" defer></script>
+    <script src="/JS/Ratings.js"></script>
+</head>
+
+<div class="container">
+    <header>
+        <img src="https://my.aacsb.edu/Portals/0/assets/images/contact/Prince%20Sultan%20Univeristy.png" width="200">
+        <div class="header-container">
+            
+            <div class="logo">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">AdvisorLink</span>
+            </div>
+        
+        </div>
+        
+        
+        <!-- Different back button based on who's viewing -->
+        <% if (user.viewMode === 'faculty') { %>
+            <a href="/advisor/<%= user.advisor_id %>" class="btn">Back to Advisor Dashboard</a>
+        <% } else { %>
+            <a href="/" class="btn">Logout</a>
+        <% } %>
+        
+
+        
+    </header>
+<body>
+   
+        <h1 id="student-name"><%= user.Fname %> <%= user.Lname %> Dashboard</h1> <br>
+        <div class="profile-info">
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Name:</span>
+                    <span class="value" id="s-name"><%= user.Fname %> <%= user.Lname %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Campus:</span>
+                    <span class="value" id="s-campus"><%= user.campus || 'Main Campus' %></span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">ID:</span>
+                    <span class="value" id="s-id"><%= user.student_id %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Major:</span>
+                    <span class="value" id="s-college"><%= user.major_id || 'Not specified' %></span>
+                </div>
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Email:</span>
+                    <span class="value" id="s-email"><%= user.email || 'Not specified' %></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Advisor Email:</span>
+                    <span class="value"><%= user.Advisor ? user.Advisor.email : 'Not specified' %></span>
+                </div>
+            
+            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Advisor Name:</span>
+                    <span class="value"><%= user.Advisor ? `${user.Advisor.Fname} ${user.Advisor.Lname}` : 'Not assigned' %></span>
+                </div>
+                <div class="info-item">
+                    <a href="/api/student/<%= user.student_id %>/report" class="btn" target="_blank">Student Report</a>
+                </div>
+                
+            </div>
+                
+        </div>
+        
+     
+        <!-- Hidden element to store GPA data for the chart -->
+<script id="gpa-data" type="application/json"><%- JSON.stringify(user.gpaHistory && user.gpaHistory.length > 0 ? 
+    user.gpaHistory.map(item => ({
+        semester: item.semester,
+        gpa: item.gpa
+    })) : 
+    [
+        {"semester": "Fall " + (user.entry_year || (new Date().getFullYear() - 1)), "gpa": user.cumulative_gpa || 3.0},
+        {"semester": "Spring " + (user.entry_year ? (parseInt(user.entry_year) + 1) : new Date().getFullYear()), "gpa": user.cumulative_gpa || 3.0}
+    ]
+) %></script>
+        
+        <div class="student-sections">
+            <section class="gpa-trends">
+                <h2>GPA Trends</h2>
+                <div class="chart-container">
+                    <canvas id="gpaChart"></canvas>
+                </div>
+                 <!-- Add this debugging section temporarily -->
+                     <div style="display:none;" id="debug-info">
+                        <h3>Debug Info</h3>
+                        <pre><%= JSON.stringify(user.gpaHistory, null, 2) %></pre>
+                    </div>
+
+
+                <div class="gpa-info">
+                    <div class="gpa-item">
+                        <span class="label">Cumulative GPA:</span>
+                        <span class="value" id="cumulative-gpa"><%= user.cumulative_gpa || 'N/A' %></span>
+                    </div>
+                    <div class="gpa-item">
+                        <span class="label">Major GPA:</span>
+                        <span class="value" id="major-gpa"><%= user.current_gpa || 'N/A' %></span>
+                    </div>
+
+                </div>
+            </section>
+            
+            <script id="gpa-data" type="application/json">
+                <%= JSON.stringify(user.gpaHistory || []) %>
+                </script>
+
+
+<!-- Add this debug script temporarily -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('GPA Data Element Content:', document.getElementById('gpa-data').textContent);
+        try {
+            const parsedGpaData = JSON.parse(document.getElementById('gpa-data').textContent);
+            console.log('Parsed GPA Data:', parsedGpaData);
+            console.log('GPA Data Length:', parsedGpaData.length);
+            
+            if (parsedGpaData.length > 0) {
+                console.log('First GPA Record:', parsedGpaData[0]);
+                console.log('GPA Property Type:', typeof parsedGpaData[0].gpa);
+            }
+        } catch (e) {
+            console.error('Error parsing GPA data:', e);
+        }
+    });
+    </script>
+
+            <div class="academic-container">
+                <section class="academic-info">
+                    <div class="info-item">
+                        <span class="label">Academic Level:</span>
+                        <span class="value" id="academic-level"><%= user.academic_level || 'Not specified' %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Completed Hours:</span>
+                        <span class="value" id="completed-hours"><%= user.completed_hours || '0' %></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Remaining Hours:</span>
+                        <span class="value" id="remaining-hours"><%= user.remaining_hours || 'N/A' %></span>
+                    </div>
+                </section>
+                
+                <section class="warnings">
+                    <h2>Warnings</h2>
+                    <ul id="warnings-list">
+                        <% if (user.warnings && user.warnings.length > 0) { %>
+                            <% user.warnings.forEach(warning => { %>
+                                <li><%= warning %></li>
+                            <% }); %>
+                        <% } else { %>
+                            <li>No current warnings</li>
+                        <% } %>
+                    </ul>
+                </section>
+            </div>
+            
+           
+            <section class="courses">
+                <div class="current-courses">
+                    <h2>Current Courses</h2>
+                    <ul id="current-courses-list">
+                        <% user.currentCourses.forEach(course => { %>
+                          <% 
+                          var absenceLimit = course.Course && course.Course.absence_limit !== undefined ? course.Course.absence_limit : 16;
+                          var absencesCount = course.StudentCourseAbsence ? course.StudentCourseAbsence.absence_count : 0;
+                          var percent = absenceLimit ? Math.round((absencesCount / absenceLimit) * 100) : 0;
+                          var status = 'success';
+                          if (percent >= 80) status = 'danger';
+                          else if (percent >= 50) status = 'warning';
+                          %>
+                          <li>
+                            <strong><%= course.course_id %></strong> - 
+                            <%= course.Course ? course.Course.course_name : 'No Name' %>
+                            <% if (course.Course && course.Course.credit_hours) { %>
+                              (<%= course.Course.credit_hours %> credit hours)
+                            <% } %>
+                            <div>
+                              <span class="absences <%= status %>">
+                                Absences: <%= absencesCount %> / <%= absenceLimit %>
+                              </span>
+                              <div class="absence-progress">
+                                <div class="progress-fill <%= status %>" style="width: <%= percent%>%"></div>
+                              
+                              </div>
+                            </div>
+                          </li>
+                        <% }); %>
+                    </ul>
+                </div>
+            
+                <div class="remaining-courses">
+                    <h2>Remaining Courses</h2>
+                    <ul id="remaining-courses-list">
+                        <% if (user.leftoverCourses && user.leftoverCourses.length > 0) { %>
+                            <% user.leftoverCourses.forEach(course => { %>
+                                <li>
+                                    <strong><%= course.course_id %></strong> - 
+                                    <%= course.Course ? course.Course.course_name : 'No Name' %>
+                                    <% if (course.Course && course.Course.credit_hours) { %>
+                                        (<%= course.Course.credit_hours %> credit hours)
+                                    <% } %>
+                                </li>
+                            <% }); %>
+                        <% } else { %>
+                            <li>No remaining required courses</li>
+                        <% } %>
+                    </ul>
+                </div>
+                
+                <!-- Completed Courses Section (Updated) -->
+<!-- Updated Completed Courses Section with new rating UI -->
+<div class="completed-courses">
+    <h2>Completed Courses</h2>
+    <ul id="completed-courses-list">
+        <% if (user.completedCourses && user.completedCourses.length > 0) { %>
+            <% user.completedCourses.forEach(course => { %>
+                <li class="course-item">
+                    <div class="course-info">
+                        <strong><%= course.course_id %></strong> - 
+                        <%= course.Course ? course.Course.course_name : 'No Name' %>
+                        <% if (course.grade) { %>
+                            (Grade: <%= course.grade %>)
+                        <% } %>
+                    </div>
+                    
+                    <% if (user.viewMode !== 'faculty') { %>
+                        <!-- Modern Rating Form -->
+                        <div class="rating-container">
+                            <button class="rate-course-btn" data-course-id="<%= course.course_id %>">Rate this course</button>
+                            
+                            <!-- Rating Modal (hidden by default) -->
+                            <div class="rating-modal" id="rating-modal-<%= course.course_id %>">
+                                <div class="rating-modal-content">
+                                    <div class="modal-header">
+                                        <a href="#" class="back-btn">Back</a>
+                                        <h2>Why did you leave this rating?</h2>
+                                    </div>
+                                    
+                                    <div class="rating-label">
+                                        <span id="rating-text-<%= course.course_id %>">Amazing, above expectations!</span>
+                                    </div>
+                                    
+                                    <div class="star-rating">
+                                        <% for(let i = 1; i <= 5; i++) { %>
+                                            <span class="star <%= (course.myRating >= i) ? 'active' : '' %>" 
+                                                  data-value="<%= i %>" 
+                                                  data-course="<%= course.course_id %>">★</span>
+                                        <% } %>
+                                    </div>
+                                    
+                                    <div class="feedback-box">
+                                        <textarea placeholder="Tell us about your own personal experience taking this course. Was it a good match for you?"></textarea>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button class="save-btn" data-course-id="<%= course.course_id %>">Save and Continue</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <% if (course.avgRating) { %>
+                                <div class="avg-rating">Average rating: <%= course.avgRating %> ★</div>
+                            <% } %>
+                        </div>
+                    <% } else { %>
+                        <% if (course.avgRating) { %>
+                            <div class="avg-rating">Average rating: <%= course.avgRating %> ★</div>
+                        <% } %>
+                    <% } %>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <li>No completed courses</li>
+        <% } %>
+    </ul>
+</div>
+            
+
+            </section>
+            
+            <!-- Advisor Actions section (only visible to advisors) -->
+            <% if (user.viewMode === 'faculty') { %>
+            <section class="advisor-actions">
+                <h2>Advisor Notes</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="addNoteBtn">Add Note</button>
+                </div>
+                <div class="advisor-notes">
+                    <h3>Notes</h3>
+                    <div class="notes-container" id="advisorNotes">
+                        <!-- This would be populated from database -->
+                        <p class="note">Student discussed course selection for next semester. Recommended MATH 301.</p>
+                    </div>
+                    <div class="new-note-form" id="newNoteForm" style="display: none;">
+                        <textarea id="noteText" placeholder="Enter your note here..."></textarea>
+                        <button id="saveNoteBtn">Save Note</button>
+                        <button id="cancelNoteBtn">Cancel</button>
+                    </div>
+                </div>
+            </section>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i>💬</i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>Advising Assistant</h3>
+            <div class="chatbot-header-controls">
+                <button class="chatbot-minimize" id="chatbotMinimize">-</button>
+                <button class="chatbot-maximize" id="chatbotMaximize">□</button>
+                <button class="chatbot-close" id="chatbotClose">×</button>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                Hello! I'm your Advising assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button id="chatbotSend">Send</button>
+        </div>
+    </div>
+    
+    <!-- Add JS to handle advisor actions if needed -->
+    <% if (user.viewMode === 'faculty') { %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add Note functionality
+            const addNoteBtn = document.getElementById('addNoteBtn');
+            const newNoteForm = document.getElementById('newNoteForm');
+            const saveNoteBtn = document.getElementById('saveNoteBtn');
+            const cancelNoteBtn = document.getElementById('cancelNoteBtn');
+            const advisorNotes = document.getElementById('advisorNotes');
+            
+            if (addNoteBtn && newNoteForm) {
+                addNoteBtn.addEventListener('click', function() {
+                    newNoteForm.style.display = 'block';
+                });
+                
+                cancelNoteBtn.addEventListener('click', function() {
+                    newNoteForm.style.display = 'none';
+                    document.getElementById('noteText').value = '';
+                });
+                
+                saveNoteBtn.addEventListener('click', function() {
+                    const noteText = document.getElementById('noteText').value.trim();
+                    if (noteText) {
+                        // This would typically send an AJAX request to save the note
+                        // For now, just add it to the UI
+                        const noteElement = document.createElement('p');
+                        noteElement.className = 'note';
+                        noteElement.textContent = noteText;
+                        advisorNotes.appendChild(noteElement);
+                        
+                        // Reset form
+                        document.getElementById('noteText').value = '';
+                        newNoteForm.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Other advisor actions would be implemented here
+        });
+    </script>
+    <% } %>
+
+<script>
+  window.USER_TYPE = "<%= user.viewMode %>";
+</script>
+</body>
+</html>

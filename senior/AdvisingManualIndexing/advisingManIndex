@@ -1,0 +1,95 @@
+import os
+from dotenv import load_dotenv
+from typing import List
+from datetime import datetime, timezone
+
+from PyPDF2 import PdfReader
+from pdf2image import convert_from_path, pytesseract
+
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from openai import OpenAI
+from pinecone import Pinecone, ServerlessSpec
+from config.settings import OPENAI_API_KEY, PINECONE_API_KEY, ADVISOR_INDEX, EMBEDDING_MODEL
+
+load_dotenv()
+
+openai = OpenAI(api_key=OPENAI_API_KEY)
+pc = Pinecone(api_key=PINECONE_API_KEY)
+
+if ADVISOR_INDEX not in [i.name for i in pc.list_indexes()]:
+    pc.create_index(
+        name=ADVISOR_INDEX,
+        dimension=1536,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
+    print(f"Created Pinecone index: {ADVISOR_INDEX}")
+index = pc.Index(ADVISOR_INDEX)
+
+PDF_PATH = "senior/data/Advising Manual.pdf"
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    reader = PdfReader(pdf_path)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text() or ""
+    return text
+
+def extract_text_with_ocr(pdf_path: str) -> str:
+    print("Extracting using OCR...")
+    images = convert_from_path(pdf_path)
+    ocr_text = ""
+    for i, img in enumerate(images):
+        page_text = pytesseract.image_to_string(img)
+        ocr_text += f"\n\n--- PAGE {i+1} ---\n\n{page_text}"
+    return ocr_text
+
+def chunk_text(text: str) -> List[str]:
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=100
+    )
+    return splitter.split_text(text)
+
+def embed_and_upsert(chunks: List[str]):
+    for i, chunk in enumerate(chunks):
+        try:
+            response = openai.embeddings.create(
+                model=EMBEDDING_MODEL,
+                input=chunk
+            )
+            embedding = response.data[0].embedding
+            metadata = {
+                "source": "advising_manual",
+                "chunk": i,
+                "uploaded_at": datetime.now(timezone.utc).isoformat()
+            }
+            index.upsert(vectors=[{
+                "id": f"advising_chunk_{i}",
+                "values": embedding,
+                "metadata": {
+                    "text": chunk,
+                    **metadata
+                }
+            }])
+            print(f"Indexed chunk {i+1}/{len(chunks)}")
+        except Exception as e:
+            print(f"Failed to index chunk {i}: {e}")
+
+def main():
+    print("Extracting text from PDF...")
+    text = extract_text_from_pdf(PDF_PATH)
+    if len(text.strip()) < 1000:
+        print("Text is too short, trying OCR fallback.")
+        text = extract_text_with_ocr(PDF_PATH)
+
+    print("Chunking text...")
+    chunks = chunk_text(text)
+    print(f"Total chunks: {len(chunks)}")
+
+    print("Embedding and upserting into Pinecone...")
+    embed_and_upsert(chunks)
+    print("Finished indexing the advising manual.")
+
+if __name__ == "__main__":
+    main()

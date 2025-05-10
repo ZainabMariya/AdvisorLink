@@ -1,0 +1,40 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Student = require('./Student');
+const Course = require('./Course');
+
+
+const StudentCourseAbsences = sequelize.define('StudentCourseAbsences', {
+  student_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false
+  },
+  course_id: {
+    type: DataTypes.STRING(10),
+    primaryKey: true,
+    allowNull: false
+  },
+  semester: {
+    type: DataTypes.STRING(20),
+    primaryKey: true,
+    allowNull: false
+  },
+  absence_count: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  }
+}, {
+  tableName: 'student_course_absence',
+  timestamps: false
+});
+
+// Associations (optional but recommended if you want to use `.getCourse()`, `.getStudent()`, etc.)
+StudentCourseAbsences.belongsTo(Student, { foreignKey: 'student_id' });
+Student.hasMany(StudentCourseAbsences, { foreignKey: 'student_id' });
+
+StudentCourseAbsences.belongsTo(Course, { foreignKey: 'course_id' });
+Course.hasMany(StudentCourseAbsences, { foreignKey: 'course_id' });
+
+module.exports = StudentCourseAbsences;
