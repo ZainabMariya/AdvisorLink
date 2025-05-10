@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: advisor-link-frontend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
+    plan: free

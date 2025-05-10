@@ -556,7 +556,7 @@ app.post('/chatbot', async (req, res) => {
         console.log('Sending request to Flask backend:', prompt); // Debug log
 
         // Make request to Flask backend
-        const response = await fetch('http://localhost:5000/chatbot', {
+        const response = await fetch(`${process.env.BACKEND_URL}/chatbot`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
