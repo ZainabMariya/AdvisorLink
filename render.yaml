@@ -7,4 +7,23 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
+      - key: PORT
+        value: 5001
+    plan: free
+
+  - type: web
+    name: advisor-link-frontend
+    runtime: node
+    buildCommand: cd frontend && npm install
+    startCommand: cd frontend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_URL
+        fromService:
+          name: advisor-link-backend
+          type: web
+          property: url
     plan: free

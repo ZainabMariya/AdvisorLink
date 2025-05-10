@@ -19,6 +19,14 @@ load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 db_uri = os.getenv("DB_URI")
 
+# --- App Config ---
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SESSION_SECRET')
+
+# Configure CORS
+cors_origin = os.getenv('FRONTEND_URL', '*')
+CORS(app, resources={r"/*": {"origins": cors_origin}})
+
 if not openai_api_key or not db_uri:
     raise ValueError("Missing OPENAI_API_KEY or DB_URI")
 
@@ -252,4 +260,5 @@ def chatbot():
 
 # --- Run ---
 if __name__ == "__main__":
-    app.run(port=5001)
+    port = int(os.getenv('PORT', 5001))
+    app.run(host='0.0.0.0', port=port)
