@@ -545,6 +545,8 @@ app.post('/courses/:courseId/rate', courseRatingController.rateAndReviewCourse);
 // Get average rating for a course
 app.get('/courses/:courseId/ratings', courseRatingController.getAverageCourseRating);
 
+// Get student's rating for a specific course 
+app.get('/courses/:courseId/myrating', courseRatingController.getStudentCourseRating);
 // Chatbot endpoint
 app.post('/chatbot', async (req, res) => {
     try {

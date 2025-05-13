@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update rating text based on value
             let ratingText = '';
             switch(value) {
-                case 1: ratingText = 'Extremely Easy'; break;
-                case 2: ratingText = 'Easy'; break;
+                case 1: ratingText = 'Extremely Difficult'; break;
+                case 2: ratingText = 'Difficult'; break;
                 case 3: ratingText = 'Met expectations'; break;
-                case 4: ratingText = 'Difficult'; break;
-                case 5: ratingText = 'Extremely Difficult'; break;
+                case 4: ratingText = 'Easy'; break;
+                case 5: ratingText = 'Extremely Easy'; break;
             }
             document.getElementById(`rating-text-${courseId}`).textContent = ratingText;
             

@@ -1853,3 +1853,11 @@ select {
         height: 140px;
     }
 }
+.error-message {
+    color: #c00;
+    background: #fee;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #c00;
+    border-radius: 4px;
+  }

@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
 venv/
+env/
 .env
 
 # Node
@@ -13,10 +16,15 @@ yarn-debug.log*
 yarn-error.log*
 frontend/.env
 
-# IDE
-.vscode/
+# IDEs and editors
 .idea/
-
-# OS
+.vscode/
+*.swp
+*.swo
 .DS_Store
 Thumbs.db
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/

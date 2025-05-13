@@ -10,8 +10,10 @@ from langchain_openai import ChatOpenAI
 from langchain.tools.tavily_search import TavilySearchResults
 from crewai import Agent, Crew, Task
 from senior.tools.pinecone_tool import PineconeSearchTool
+from senior.tools.pdf_tool import PDFSearchTool
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import re
 
 # --- Setup ---
 warnings.filterwarnings('ignore')
@@ -56,8 +58,7 @@ sql_agent_executor = create_sql_agent(llm=llm, db=db, agent_type=AgentType.OPENA
 # --- Tools ---
 pinecone_tool = PineconeSearchTool(index_name="psu-website")
 tavily_tool = TavilySearchResults(k=3, search_kwargs={"site": "psu.edu.sa"})
-advisor_manual_tool = PineconeSearchTool(index_name="psu-advising")
-
+advisor_manual_tool = PDFSearchTool(pdf_path="senior/AdvisingManualIndexing/Advising Manual.pdf").get_tool()
 # --- Agents ---
 db_schema = (
     "Tables: Student, Course, GPA_History, Absence, Advisor, Enrollment, Department, Major.\n"
@@ -122,56 +123,6 @@ def is_useful(text: str) -> bool:
     return not any(b in text.lower() for b in bad)
 
 # --- Main Loop ---
-async def academic_advisor_chatbot(prompt=None):
-    print("\n🤖 PSU Academic Advisor Chatbot (Smart Agent Mode)")
-    print("Type 'exit' to quit.\n")
-
-    while True:
-        user_prompt = prompt if prompt else input("Ask anything> ").strip()
-        if user_prompt.lower() == "exit":
-            break
-
-        print("🔍 Running SQL Agent...")
-        try:
-            sql_result_dict = sql_agent_executor.invoke({"input": user_prompt})
-            sql_result = sql_result_dict.get("output", "No response generated.")
-        except Exception as e:
-            sql_result = f"SQL Error: {e}"
-
-        print("🔎 Running PSU Web Agent...")
-        web_task = Task(
-            description=f"Answer the question: '{user_prompt}' using internal PSU documents and psu.edu.sa. Print the output from both-pinesearch and tavily.",
-            expected_output="Helpful PSU-related response.",
-            agent=psu_web_agent
-        )
-        crew.tasks = [web_task]
-        web_result = crew.kickoff()
-        # Filter Tavily results to only include psu.edu.sa
-        if isinstance(web_result, list):
-            web_result = [r for r in web_result if 'psu.edu.sa' in (r.get('url') or '')]
-        elif isinstance(web_result, str) and 'psu.edu' in web_result:
-            # Optionally, you can do a more advanced filter for string results
-            lines = web_result.split('\n')
-            web_result = '\n'.join([line for line in lines if 'psu.edu.sa' in line or 'http' not in line])
-
-        print("✅ Evaluating best result with Quality Agent...")
-        comparison_task = Task(
-            description=(
-                f"The user asked: '{user_prompt}'. Compare the following responses:\n\n"
-                f"SQL Agent Response:\n{sql_result}\n\n"
-                f"PSU Web Agent Response:\n{web_result}\n\n"
-                f"Choose the more accurate, complete, and helpful answer and provide only the final output to the end user. Combine if necessary. The user should not know which agent information came from or which agent was correct or incorrect"
-            ),
-            expected_output="Final user-facing answer, with no mention of the agents.",
-            agent=quality_agent
-        )
-
-        crew.tasks = [comparison_task]
-        final_result = crew.kickoff()
-        print("\n🎓 Final Answer:\n", final_result)
-        return final_result
-
-# --- Faculty Main Loop ---
 async def faculty_advisor_chatbot(prompt=None):
     print("\n🤖 PSU Academic Advisor Chatbot (Faculty Mode)")
     print("Type 'exit' to quit.\n")
@@ -189,12 +140,18 @@ async def faculty_advisor_chatbot(prompt=None):
             sql_result = f"SQL Error: {e}"
 
         print("🔎 Running PSU Web Agent...")
-        web_task = Task(
-            description=f"Answer the question: '{user_prompt}' using internal PSU documents and psu.edu.sa",
-            expected_output="Helpful PSU-related response.",
+        PSU_Web_rag_task = Task(
+            description=f"The user asked: {user_prompt}. Respond with a clear and accurate answer based only on PSU website content.",
+            expected_output="An accurate answer using only information from the PSU website documents.",
             agent=psu_web_agent
         )
-        crew.tasks = [web_task]
+
+        advisor_task = Task(
+            description=f"The student asked: {user_prompt}. Provide a clear and accurate advising answer using the knowledge you have.",
+            expected_output="A complete and helpful advising answer based on PSU's advising manual.",
+            agent=advisor_agent
+        )
+        crew.tasks = [PSU_Web_rag_task, advisor_task]
         web_result = crew.kickoff()
         # Filter Tavily results to only include psu.edu.sa
         if isinstance(web_result, list):
@@ -205,8 +162,18 @@ async def faculty_advisor_chatbot(prompt=None):
             web_result = '\n'.join([line for line in lines if 'psu.edu.sa' in line or 'http' not in line])
 
         print("🧑‍💼 Running Advisor Agent...")
-        advisor_result = advisor_agent.kickoff(user_prompt)
-        print(f"Advisor Agent Output: {advisor_result!r}")
+        advisor_task = Task(
+            description=f"The user asked: {user_prompt}. Provide advising guidance based on the PSU manual.",
+            expected_output="A clear and accurate advising answer based on PSU's policies.",
+            agent=advisor_agent
+        )
+        crew.tasks = [advisor_task]
+        try:
+            advisor_result = crew.kickoff()
+            print(f"Advisor Agent Output: {advisor_result!r}")
+        except Exception as e:
+            print(f"Advisor Agent Error: {e}")
+            advisor_result = f"Advisor Error: {e}"
 
         print("✅ Evaluating best result with Quality Agent (all three)...")
         comparison_task = Task(
@@ -225,28 +192,32 @@ async def faculty_advisor_chatbot(prompt=None):
         print("\n🎓 Final Answer (Faculty):\n", final_result)
         return final_result
 
+def clean_and_format_response(text):
+    # Remove all triple backtick code blocks
+    text = re.sub(r"`{3,}", "", text)
+    # Remove leading/trailing whitespace
+    text = text.strip()
+    # Replace 3+ newlines with just two
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text
+
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     try:
         user_prompt = request.json.get('prompt')
-        user_type = request.json.get('userType')  # 'faculty' or 'student'
         if not user_prompt:
             return jsonify({'error': 'No prompt provided'}), 400
 
         print(f"Received prompt: {user_prompt}")  # Debug log
-        print(f"User type: {user_type}")  # Debug log
 
         # Create new event loop
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            if user_type == 'faculty':
-                # Use all three agents for faculty
-                final_result = loop.run_until_complete(faculty_advisor_chatbot(user_prompt))
-            else:
-                # Use default logic for students/general
-                final_result = loop.run_until_complete(academic_advisor_chatbot(user_prompt))
+            final_result = loop.run_until_complete(faculty_advisor_chatbot(user_prompt))
             print(f"Final result: {final_result}")  # Debug log
+            # Clean and format the response before returning
+            final_result = clean_and_format_response(final_result)
             return jsonify({'answer': final_result})
         except Exception as e:
             print(f"Error in async operation: {str(e)}")  # Debug log
@@ -257,6 +228,9 @@ def chatbot():
         print(f"Error in route handler: {str(e)}")  # Debug log
         return jsonify({'error': str(e)}), 500
 
+@app.route('/health')
+def health_check():
+    return jsonify({'status': 'healthy'}), 200
 
 # --- Run ---
 if __name__ == "__main__":

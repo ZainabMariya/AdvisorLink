@@ -1,0 +1,21 @@
+{
+  "name": "psu-advisor-app",
+  "version": "1.0.0",
+  "description": "PSU Academic Advisor Application",
+  "scripts": {
+    "start": "node frontend/App.js",
+    "dev": "nodemon frontend/App.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "sequelize": "^6.37.1",
+    "mysql2": "^3.9.1",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+} 

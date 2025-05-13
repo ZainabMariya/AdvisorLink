@@ -4,9 +4,10 @@ from typing import Optional, Type, Union
 import json
 import os
 
-from pinecone import Pinecone
-from langchain_openai import OpenAIEmbeddings
+from pinecone import Pinecone, ServerlessSpec
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_pinecone import PineconeVectorStore  
+from crewai import Agent, Task
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
@@ -37,6 +38,19 @@ class PineconeSearchTool(BaseTool):
         try:
             # Initialize Pinecone client
             pc = Pinecone(api_key=PINECONE_API_KEY)
+            
+            # Create index if it doesn't exist
+            if self.index_name not in pc.list_indexes().names():
+                pc.create_index(
+                    name=self.index_name,
+                    dimension=1536,
+                    metric='euclidean',
+                    spec=ServerlessSpec(
+                        cloud='aws',
+                        region='us-west-2'
+                    )
+                )
+            
             index = pc.Index(self.index_name)
 
             # Initialize LangChain-compatible Pinecone vector store

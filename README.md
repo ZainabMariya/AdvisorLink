@@ -45,9 +45,6 @@ Run the main application:
 python main.py
 ```
 
-The system provides three main functions:
-1. Analyze student progress
-2. Get course recommendations
-3. Full advising session
+
 
 Each function combines multiple agents to provide comprehensive academic support.
