@@ -9,7 +9,7 @@ from langchain.agents.agent_types import AgentType
 from langchain_openai import ChatOpenAI
 from langchain.tools.tavily_search import TavilySearchResults
 from crewai import Agent, Crew, Task
-from senior.tools.pinecone_tool import PineconeSearchTool
+from senior.tools.pinecone_search_tool import PineconeSearchTool
 from senior.tools.pdf_tool import PDFSearchTool
 from flask import Flask, request, jsonify
 from flask_cors import CORS
