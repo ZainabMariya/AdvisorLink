@@ -1,0 +1,995 @@
+{
+  "run_at_utc": "2026-01-09T22:21:27.895591+00:00",
+  "sitemap_url_count": 926,
+  "stats": {
+    "updated": 682,
+    "skipped": 244,
+    "errors": 0,
+    "reasons": {
+      "no_chunks": 130,
+      "http_404": 18,
+      "incomplete_extraction": 82,
+      "http_500": 5,
+      "http_0": 9
+    }
+  },
+  "failed": [],
+  "skipped": [
+    {
+      "url": "https://psu.edu.sa/en/CL/llb-descrip",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/home",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/home",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/mcl-descrip",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/organization-structure",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/cs-cd",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/is-cd",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/se-cd",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/mscy-Description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/graduate-prog-msse-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/RIOTU",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/research",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/SEL",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/AIDA",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/EIAS",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/EIAS-RA",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/academics",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/admissions-student-guide",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/admissions",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/board-trustees",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/University-Administration",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/University-Statistics",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/chart",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/strategic-plan-2018-2023",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/teaching-Learning-Services",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://ric.psu.edu.sa",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/admissions-Graduate-Admission",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/admissions-graduate-requirements",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/research-review",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/research-Editorial",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/irb-policies",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/it-center-services",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/TAC-Competition",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/it-center-days-events",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/center-statistics-accomplish",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/home",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/sp-dc-faq",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/acd-eng-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/acd-ling-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/research",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/undergraduate-account-description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/undergraduate-marketing-description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/undergraduate-finance-description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/undergraduate-management-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/undergraduate-management-description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/graduate-prog-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/graduate-prog-description",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-cee",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-cee-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-cee-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-pem-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-grd-mem-plan",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-grd-mem-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://info.psu.edu.sa/PSU.News/",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-cem-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-ungrd-cem-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/video",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/story",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/event",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/events-specializations",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/events-places",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/notifications_area",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/student-faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/visitors",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/research",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/research",
+      "reason": "http_500"
+    },
+    {
+      "url": "https://psu.edu.sa/en/alumni",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/faculty",
+      "reason": "http_500"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/research",
+      "reason": "http_500"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/faculty",
+      "reason": "http_500"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/faculty-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/faculty-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/faculty-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/faculty-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/faculty-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/icm-portal",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/dryamani-message-to-2020-graduates",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/contact-eaac",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/BSE-lab-members",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/accounting-tracks",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/TAC-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Assessment",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/MCL-career-opportunities",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/cd-mse",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Contact-TLC",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/accounting-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/CBA-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/MGT-Contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/marketing-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/contact-finance",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/mkt-accreditation",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/student-clubs",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/fin-accreditation",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Accreditation-Letters",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://eduhub.psu.edu.sa",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Library_Newsletter",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/time-line",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/ten-steps-to-happinesss",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/ALLAB-collaborators",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/initiative-form",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/sdg-8",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/international-symposium-ALLAB",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "http://www.psurms.com/index.php",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/student-clubs",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/psu/articles/2020/10/19/institutional-risk-management-policy-2020_1603085524.pdf",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Environment-Club",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/eradah-club",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/share-your-happy-news",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "http://www.cybexpsu.com",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/scholarship-apply",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/MBA-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/zakat-and-tax-clinic",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://www.psu.edu.sa/en/admissions-Graduate-Admission",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/books-and-bylaws",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/graduate-studies-frequently-asked-questions",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/graduate-studies-forms",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/graduate-studies-contacts",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://giftzcenter.org/index",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/compliance-office",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://research.psu.edu.sa/IRB/",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://catalog.feedbackdialog.com/a?kw=generated1616661820018&rk=Ne44281201232",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/advisory-board",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/acd-ungrd-ae-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/acd-ungrd-id-career",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/acd-ungrd-id-descript",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "http://edugate.psu.edu.sa/psu/ui/guest/application_online/index/typeHighApplicationOnlineIndex.faces",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/frabrication-lab-activities",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/QAC-handbook-guidelines",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/General-Business",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/event-details",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-upcoming-event",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://forms.gle/HWRgZozpnX2593S86",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/TLC-forms",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/ERL-conferences",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/ERL-Webinars",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://www.riotu-lab.org",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://sel.psu.edu.sa/",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://eias-psu.com/",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/acd-university-prerequisites",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/ICM-frequently-asked-question",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/research",
+      "reason": "http_500"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CAD/faculty",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://edugate.psu.edu.sa/psu/ui/guest/graduation_document/index/graduationDocIndex.faces",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/psu/articles/2021/05/18/gepn-brochure_1621315880.pdf",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Share-Your-Knowledge",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Send-A-Smile",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Research-areas",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Webinars-Seminars",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Publications",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://emg.psu.edu.sa/",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/contact-information",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/faces-of-LTD",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/C4C",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/graduation-ceremony-2021",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/events-of-LTD",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Science",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/list",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/Toastmaster-Club",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/ALLAB-Videos",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/LTD-Forums",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/WTC-office-organization",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/WTC-faq",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/WTC-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://drive.google.com/file/d/1n0mrYdzMjeRw_CAgc-0RLg3Cq_Owtvrg/view",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/WTC-booking-system",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/LTD-Teaching",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://drive.google.com/file/d/1nnVdFnD_MRnZcjgwpVtC7mi2VHnAN5Hy/view?usp=sharing",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/se-enrollment",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/DQAD-about",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/DQAD-services-and-programs",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/DQAD-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://www.psu.edu.sa/psu/articles/2022/05/11/mem-program-bulletin_1652263569.pdf",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-impact-rankings",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-SDG-5-committee",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-SDG-8-committee",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-SDG-16-committee",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CYBEX-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PMO-contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/achievement",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Annual_Strategic_Planning_Progress_Reports",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CL/mcl-graduation-requirements",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-event-calendar",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/sdg-8-employment-policy-on-discrimination",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/upcoming",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://www.psu.edu.sa/psu/articles/2022/10/18/translation-brochure_1666095554.pdf",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://www.psu.edu.sa/psu/articles/2022/10/18/applied-linguistics-brochure_1666095560.pdf",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://hr.psu.edu.sa",
+      "reason": "http_0"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/CS499",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/University-Statistics-2022-2023",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Services",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/MRL-members",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/FERL-Research",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/FERLmembers",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/contact",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CBA/FERL-Distinguished",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-grd-mem-researchpublications",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-EC-council-certified-incident-handler",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-cloud-computing-essentials-using-AWS",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/ce-courses-for-certification-program",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CCIS/graduate-prog-mscy-thesis-process-guidelines",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/Du-Mena",
+      "reason": "http_404"
+    },
+    {
+      "url": "https://drive.google.com/file/d/1D80uEXKjjYmNO4t5QAe7_3Ou-P3cu_tX/view?usp=drive_link",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-SDG-7-committee",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-SDG-13-committee",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/researches",
+      "reason": "incomplete_extraction"
+    },
+    {
+      "url": "https://psu.edu.sa/en/WTC-forms",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSC-profile-nouf-alqahtani",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CSH/translation",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-scrum-master-training",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-redhat-certified-system-administrator",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-managing-customers-and-sales",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-CISCO-certified-network-administrator",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/PSU-DA-digital-marketing",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/en/CE/acd-grd-mem-research-publications",
+      "reason": "no_chunks"
+    },
+    {
+      "url": "https://psu.edu.sa/psu/articles/2021/06/02/gspn-brochure_1622626990.pdf",
+      "reason": "incomplete_extraction"
+    }
+  ]
+}
