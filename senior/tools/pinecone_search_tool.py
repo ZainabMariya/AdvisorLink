@@ -4,7 +4,7 @@ import asyncio
 from typing import Optional, Type, Union, Any, Dict, List
 
 from pydantic import BaseModel, Field, PrivateAttr
-from crewai.tools import BaseTool  # ✅ CrewAI tool base (required for Agent.tools)
+from crewai.tools import BaseTool 
 
 from pinecone import Pinecone
 from langchain_openai import OpenAIEmbeddings
