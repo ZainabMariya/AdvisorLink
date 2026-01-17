@@ -56,7 +56,7 @@ llm = ChatOpenAI(api_key=openai_api_key, model="gpt-4o-mini", temperature=0)
 sql_agent_executor = create_sql_agent(llm=llm, db=db, agent_type=AgentType.OPENAI_FUNCTIONS, verbose=False)
 
 # --- Tools ---
-pinecone_tool = PineconeSearchTool(index_name="psu-website")
+pinecone_tool = PineconeSearchTool(index_name="psu-web-auto")
 tavily_tool = TavilySearchResults(k=3, search_kwargs={"site": "psu.edu.sa"})
 advisor_manual_tool = PDFSearchTool(pdf_path="senior/AdvisingManualIndexing/Advising Manual.pdf").get_tool()
 # --- Agents ---
